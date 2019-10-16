@@ -95,10 +95,10 @@ void setup() {
 void loop() {
   webSocket.loop();
   // Cast to uint32_t to overcome overflow of millis, which happens approximately after 49 days
-  // For example: 0 - 200 = -200, cast to uint32_t and value becomes 4294967096
-  //              201 - 200 = 1, cast to uint32_t and value becomes 1.
-  // YES, there is 200ms error, but it is not important in this case.
-  if (sleep && (uint32_t)(millis() - sleep) <= 200) {
+  // For example: 0 - 50 = -50, cast to uint32_t and value becomes 4294967246
+  //              51 - 50 = 1, cast to uint32_t and value becomes 1.
+  // YES, there is 50 ms error, but it is does not matter in this case.
+  if (sleep && (uint32_t)(millis() - sleep) <= 50) {
     FastLED.setBrightness(0);
     brightness = 0;
     sleep = 0;
